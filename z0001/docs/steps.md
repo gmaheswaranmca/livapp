@@ -291,10 +291,10 @@ CMD ["npm", "run", "dev", "--", "--host"]
 From root folder:
 
 ```bash
-# Run Docker Daemon in a termina
+# *** Run Docker Daemon in a terminal***
 dockerd &
 
-# In another terminal, either up the containers if not up or start the containers if stopped
+# ***In another terminal, either up the containers if not up or start the containers if stopped***
 
 #docker compose up --build
 
