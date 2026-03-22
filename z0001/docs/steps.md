@@ -291,7 +291,70 @@ CMD ["npm", "run", "dev", "--", "--host"]
 From root folder:
 
 ```bash
-docker compose up --build
+# Run Docker Daemon in a termina
+dockerd &
+
+# In another terminal, either up the containers if not up or start the containers if stopped
+
+#docker compose up --build
+
+# detached mode
+docker compose up --build -d
+
+# Check containers:
+docker compose ps
+
+# To check logs later:
+docker compose logs -f
+
+# Suppress Output Completely
+docker compose up --build > /dev/null 2>&1
+
+# Minimal Output (Quiet Build)
+docker compose up --build --quiet-pull
+
+OR 
+
+docker compose build --quiet
+docker compose up -d
+
+# Only Show Errors (Advanced
+docker compose up --build 2>/dev/null
+#   #Hides normal logs #Shows only errors
+
+# Stop / Start
+# Stop (Recommended)
+docker compose stop
+#   #Stops running containers #Keeps containers intact #No rebuild / no recreation
+
+# Start again:
+docker compose start
+# #Fast restart, no rebuild, no data loss
+
+# Pause / Resume
+# Pause (Not usually recommended)
+docker compose pause
+# #Freezes containers (CPU paused) #Keeps memory state
+
+# Resume:
+docker compose unpause
+# #Containers still occupy memory #Not ideal for long time #Can cause issues with network / DB connections
+# #Use only for very short pause (debugging)
+
+# Down / Up
+# Down (Avoid for your case)
+docker compose down
+# #Stops AND removes containers #Network removed #Need to recreate again
+# #This is what you DON’T want
+
+# Best Practice: docker compose stop | docker compose start
+
+# Stop / Start Specific Service
+# Stop a specific service:
+docker compose stop <service_name>
+
+# Start a specific service:
+docker compose start <service_name>
 ```
 
 
