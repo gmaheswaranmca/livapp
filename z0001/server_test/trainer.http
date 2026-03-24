@@ -1,0 +1,44 @@
+@baseUrl = http://localhost:5000
+@trainerId = 69c205ac622f3af9915b0a99
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjljMjAyMGE2MTBkZDMyODViMzY2MWI4IiwiZW1haWwiOiJzdUBnbWFpbC5jb20iLCJyb2xlIjo0LCJpYXQiOjE3NzQzMjMwNTB9.m6ANgx8ghI6vNM3Ck_BUK_xvedIig_wu2utQrjrfW_Y
+### 🔹 Get All Trainers
+GET {{baseUrl}}/api/trainers
+Authorization: {{token}}
+
+###
+
+### 🔹 Create Trainer
+POST {{baseUrl}}/api/trainers
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "name": "Raj",
+  "skills": ["React", "Node", "MongoDB"],
+  "photo": "https://example.com/photo.jpg"
+}
+
+###
+
+### 🔹 Get Trainer By ID
+GET {{baseUrl}}/api/trainers/{{trainerId}}
+Authorization: {{token}}
+
+###
+
+### 🔹 Update Trainer
+PUT {{baseUrl}}/api/trainers/{{trainerId}}
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "name": "Mahesh Updated",
+  "skills": ["React", "Node", "Docker"],
+  "photo": "https://example.com/new-photo.jpg"
+}
+
+###
+
+### 🔹 Delete Trainer
+DELETE {{baseUrl}}/api/trainers/{{trainerId}}
+Authorization: {{token}}
