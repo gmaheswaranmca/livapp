@@ -1050,7 +1050,7 @@ VITE_API_URL=http://localhost:5000
 
 ```bash
 docker compose down
-docker compose up --build
+docker compose up --build -d
 ```
 
 ---
@@ -1096,7 +1096,7 @@ password: 1234
 
 # 🔷 4 - CRUD ops
 
-## 📄 2. Update API (services/api.ts)
+## 📄 2. Update API (client/src/services/api.ts)
 
 Add these:
 
@@ -1153,7 +1153,7 @@ export const deleteTrainer = async (id: string) => {
 
 ---
 
-## 📄 3. TrainerForm (Reusable Core)
+## 📄 3. TrainerForm (client/src/components/TrainerForm.tsx) (Reusable Core)
 
 ```tsx
 import { useEffect, useState } from "react";
@@ -1231,6 +1231,9 @@ const TrainerForm = ({ mode, id }: any) => {
         <option>Inactive</option>
       </select>
 
+       <button className="btn btn-light" onClick={() => navigate('/')}>
+        Back
+      </button>
       <button className="btn btn-success" onClick={handleSubmit}>
         Save
       </button>
@@ -1243,7 +1246,7 @@ export default TrainerForm;
 
 ---
 
-## 📄 4. New Page
+## 📄 4. New Page (client/src/pages/new.tsx)
 
 ```tsx
 import PrivateNavbar from "../components/PrivateNavbar";
@@ -1263,7 +1266,7 @@ export default NewTrainer;
 
 ---
 
-## 📄 5. Edit Page
+## 📄 5. Edit Page (client/src/pages/edit.tsx)
 
 ```tsx
 import { useParams } from "react-router-dom";
@@ -1288,7 +1291,7 @@ export default EditTrainer;
 
 ## 📄 6. Update Home Page (IMPORTANT)
 
-Replace your `pages/index.tsx`:
+Replace your `(client/src/pages/index.tsx)`:
 
 ```tsx
 import { useEffect, useState } from "react";
@@ -1382,7 +1385,7 @@ export default Home;
 
 ---
 
-## 📄 7. Update Routes (App.tsx)
+## 📄 7. Update Routes (client/src/App.tsx) 
 
 ```tsx
 import NewTrainer from "./pages/new";

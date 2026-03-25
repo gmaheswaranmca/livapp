@@ -1,7 +1,6 @@
 @baseUrl = http://localhost:5000
 @trainerId = 69c205ac622f3af9915b0a99
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjljMjAyMGE2MTBkZDMyODViMzY2MWI4IiwiZW1haWwiOiJzdUBnbWFpbC5jb20iLCJyb2xlIjo0LCJpYXQiOjE3NzQzMjMwNTB9.m6ANgx8ghI6vNM3Ck_BUK_xvedIig_wu2utQrjrfW_Y
-### 🔹 Get All Trainers
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjljMjAyMGE2MTBkZDMyODViMzY2MWI4IiwiZW1haWwiOiJzdUBnbWFpbC5jb20iLCJyb2xlIjo0LCJpYXQiOjE3NzQ0NTc0NjR9.fRu5EPo7Q3_MdWnrnxJax4qrtAP9oZLHURLDFLOHL5o
 GET {{baseUrl}}/api/trainers
 Authorization: {{token}}
 
@@ -13,7 +12,7 @@ Authorization: {{token}}
 Content-Type: application/json
 
 {
-  "name": "Raj",
+  "name": "Mahesh",
   "skills": ["React", "Node", "MongoDB"],
   "photo": "https://example.com/photo.jpg"
 }
