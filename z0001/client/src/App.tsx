@@ -4,6 +4,7 @@ import Home from "./pages";
 import PrivateRoute from "./routes/PrivateRoute";
 import NewTrainer from "./pages/new";
 import EditTrainer from "./pages/edit";
+import Audit from "./pages/audit";
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
           element={
             <PrivateRoute>
               <EditTrainer />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/audit"
+          element={
+            <PrivateRoute>
+              <Audit />
             </PrivateRoute>
           }
         />

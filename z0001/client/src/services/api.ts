@@ -12,14 +12,15 @@ export const loginApi = async (data: any) => {
   return res.json();
 };
 
-export const getTrainers = async () => {
+export const getTrainers = async (page = 1, search = "") => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch(`${API_URL}/api/trainers`, {
-    headers: {
-      Authorization: token || ""
+  const res = await fetch(
+    `${API_URL}/api/trainers?page=${page}&limit=5&search=${search}`,
+    {
+      headers: { Authorization: token || "" }
     }
-  });
+  );
 
   return res.json();
 };
@@ -73,3 +74,12 @@ export const deleteTrainer = async (id: string) => {
   });
 };
 
+export const fetchAudit = async () => {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(`${API_URL}/api/audit`, {
+      headers: { Authorization: token || "" }
+    });
+
+    return res.json();
+  };

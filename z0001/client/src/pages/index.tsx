@@ -5,20 +5,20 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [trainers, setTrainers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
+  const role = Number(localStorage.getItem("role"));
 
   useEffect(() => {
     load();
   }, [search]);
 
   const load = async () => {
-    const data = await getTrainers();
-    setTrainers(
-      data.filter((t: any) =>
-        t.name.toLowerCase().includes(search.toLowerCase())
-      )
-    );
+    const res = await getTrainers(page, search);
+    setTrainers(res.data);
+    setTotal(res.total);
   };
 
   const remove = async (id: string) => {
@@ -33,9 +33,11 @@ const Home = () => {
       <div className="container mt-3">
         <div className="d-flex justify-content-between">
           <h3>Trainer List</h3>
-          <button className="btn btn-primary" onClick={() => navigate("/new")}>
-            + Add
-          </button>
+          {role >= 1 && (
+            <button className="btn btn-primary" onClick={() => navigate("/new")}>
+              + Add
+            </button>
+          )}
         </div>
 
         <input
@@ -61,24 +63,50 @@ const Home = () => {
                 <td>{t.skills.join(", ")}</td>
                 <td>{t.status}</td>
                 <td>
-                  <button
-                    className="btn btn-warning btn-sm me-2"
-                    onClick={() => navigate(`/edit/${t._id}`)}
-                  >
-                    Edit
-                  </button>
+                  {role >= 2 && (
+                    <button
+                      className="btn btn-warning btn-sm me-2"
+                      onClick={() => navigate(`/edit/${t._id}`)}
+                    >
+                      Edit
+                    </button>
+                  )}
 
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => remove(t._id)}
-                  >
-                    Delete
-                  </button>
+                  {role >= 3 && (
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => remove(t._id)}
+                    >
+                      Delete
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
+            <tr>
+              <td colSpan={4}>
+                <div className="mt-3">
+                  <button
+                    className="btn btn-secondary me-2"
+                    disabled={page === 1}
+                    onClick={() => setPage(page - 1)}
+                  >
+                    Prev
+                  </button>
+
+                  <button
+                    className="btn btn-secondary"
+                    disabled={page * 5 >= total}
+                    onClick={() => setPage(page + 1)}
+                  >
+                    Next
+                  </button>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
+        
       </div>
     </>
   );

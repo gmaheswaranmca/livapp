@@ -1049,6 +1049,10 @@ VITE_API_URL=http://localhost:5000
 ## ▶️ Restart Docker
 
 ```bash
+# In one terminal:
+dockerd & 
+
+# In another terminal:
 docker compose down
 docker compose up --build -d
 ```
@@ -1445,6 +1449,8 @@ Inside `server/`:
 
 ```bash
 npm install bcrypt
+
+npm install --save-dev @types/bcrypt
 ```
 
 ---
@@ -1717,6 +1723,45 @@ const Audit = () => {
 };
 
 export default Audit;
+
+// App.tsx
+import Audit from "./pages/audit";
+
+...
+        <Route
+          path="/audit"
+          element={
+            <PrivateRoute>
+              <Audit />
+            </PrivateRoute>
+          }
+        />
+...
+
+// components/PrivateNavbar.tsx
+
+
+...
+    <nav className="navbar navbar-dark bg-primary">
+      <div className="container-fluid">
+        <span className="navbar-brand">Trainer Dashboard</span>
+
+        <div className="d-flex gap-2">
+          <Link to="/" className="btn btn-warning">
+            Trainers
+          </Link>
+
+          <Link to="/audit" className="btn btn-warning">
+            Audit
+          </Link>
+
+          <button className="btn btn-light" onClick={logout}>
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+...
 ```
 
 ---

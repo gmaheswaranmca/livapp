@@ -1,68 +1,9 @@
-/*
-Settigup Reading Env Vars from .env file
-  READ configurations from Env Vars PORT, MONGO_URI, JWT_SECRET
-Create App  
-  Add middlewares 
-    CORS
-    JSON
-
-Create mongoose models 
-  admin_user model = from admin_user schema 
-  trainer model = from trainer schema
-  audit model = from audit schema
-  last_update model = from last_update schema
-
-Define middlewares and utility 
-  middlewares:
-    authMiddleware  : token verification, sets token user in req.user  
-    roleMiddleware hof : for param role numbers to hof, 
-      getting middleware : to check: given param role matches user role
-
-  utility
-    logAudit entry and update to lastUpdate
-
-API End Points
-  Auth
-    login API : POST /api/login {email, password} -> { token }
-      
-      for matched user, for token
-  Trainer
-    list: GET /api/trainers -> [{ ie trainer json }]
-      authMiddleware
-      find Trainers filter "name contains search"
-    create: POST /api/trainers 
-      ... { body+, updated_user_id from req.user}
-        -> { createdTrainer json }
-      authMiddleware, roleMiddleware([1, 2, 3, 4])
-      create Trainer
-      op+: logAudit
-    view: GET /api/trainers/:id -> { ie trainer json }
-      authMiddleware, roleMiddleware([1, 2, 3, 4])
-      query filter "name contains search"
-    update: PUT /api/trainers/:id 
-      ... { body+, updated_user_id from req.user}
-        -> { createdTrainer json }
-      authMiddleware, roleMiddleware([2, 3, 4])
-      findByIdAndUpdate Trainer
-      op+: logAudit   
-    delete: DELETE /api/trainers/:id 
-      ... { body+, updated_user_id from req.user}
-        -> { createdTrainer json }
-      authMiddleware, roleMiddleware([3, 4])
-      findByIdAndDelete Trainer
-      op+: logAudit
-Init super user
-  createSuperUser
-Start Server
-  mongoose.connect
-    -> createSuperUser
-    -> app.liste PORT
-*/
 import express from "express";
 import mongoose, { Schema } from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 dotenv.config();
 
@@ -159,15 +100,20 @@ const logAudit = async (table: string, op: string, payload: any) => {
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
-  const user = await AdminUser.findOne({ email, password });
+  const user = await AdminUser.findOne({ email });
+  const user_pwd : string = user?.password ? user?.password : '';
+
   if (!user) return res.status(401).send("Invalid credentials");
+
+  const valid = await bcrypt.compare(password, user_pwd);
+  if (!valid) return res.status(401).send("Invalid credentials");
 
   const token = jwt.sign(
     { user_id: user._id, email: user.email, role: user.role },
     JWT_SECRET
   );
 
-  res.json({ token });
+  res.json({ token, role: user.role });
 });
 
 // =======================
@@ -176,14 +122,22 @@ app.post("/api/login", async (req, res) => {
 
 // LIST / SEARCH
 app.get("/api/trainers", authMiddleware, async (req, res) => {
-  const { search = "" } = req.query;
-  const searchStr = typeof search === "string" ? search : "";
-  
-  const trainers = await Trainer.find({
-    name: { $regex: searchStr, $options: "i" }
-  });
+  const { page = 1, limit = 5, search = "" }: any = req.query;
 
-  res.json(trainers);
+  const query = {
+    name: { $regex: search, $options: "i" }
+  };
+
+  const data = await Trainer.find(query)
+    .skip((page - 1) * limit)
+    .limit(parseInt(limit));
+
+  const total = await Trainer.countDocuments(query);
+
+  res.json({
+    data,
+    total
+  });
 });
 
 // CREATE (agent+)
@@ -245,6 +199,23 @@ app.delete(
   }
 );
 
+//AUDIT
+app.get(
+  "/api/audit",
+  authMiddleware,
+  roleMiddleware([3, 4]),
+  async (req, res) => {
+    const logs = await Audit.find().sort({ updated_time: -1 }).limit(20);
+    res.json(logs);
+  }
+);
+
+//LAST UPDATE - API ENDPOINTS
+app.get("/api/last-update", async (req, res) => {
+  const data = await LastUpdate.findOne();
+  res.json(data);
+});
+
 // =======================
 // INIT SUPER USER
 // =======================
@@ -253,11 +224,14 @@ const createSuperUser = async () => {
   const exists = await AdminUser.findOne({ role: 4 });
 
   if (!exists) {
+    const hashed = await bcrypt.hash("1234", 10);
+
     await AdminUser.create({
       email: "su@gmail.com",
-      password: "1234",
+      password: hashed,
       role: 4
     });
+
     console.log("Super user created");
   }
 };
