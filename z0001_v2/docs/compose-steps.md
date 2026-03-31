@@ -1,3 +1,8 @@
+## ▶️ Run Production
+```bash id="1e1k9k"
+docker compose -f docker-compose.prod.yml up --build
+```
+
 # In one terminal:
 Run docker engine (daemon) in one terminal.
 ```bash
