@@ -1,0 +1,26 @@
+services:
+  z1001_mongo_box:
+    image: mongo:7
+    container_name: z1001_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_z1001_data:/data/db
+
+  z1001_server_box:
+    build: ./server
+    container_name: z1001_server
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./server/.env
+    depends_on:
+      - z1001_mongo_box
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+
+volumes:
+  mongo_z1001_data:
