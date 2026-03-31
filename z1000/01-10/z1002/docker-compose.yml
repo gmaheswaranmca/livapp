@@ -1,0 +1,12 @@
+services:
+  z1002_mongo_box:
+    image: mongo:7
+    container_name: z1002_mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_z1002_data:/data/db
+
+volumes:
+  mongo_z1002_data:
