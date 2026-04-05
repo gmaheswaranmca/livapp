@@ -29,11 +29,12 @@ docker run -d \
   mongo:7
 
 # Test connectivity
-docker exec -it z1001_server sh
-
 # Connect to mongo shell
+docker exec -it z1002_mongo_box mongosh
 
 # Cleanup
-docker stop z1001_mongo
-docker rm z1001_mongo
+docker stop z1002_mongo
+docker rm z1002_mongo
+
+docker volume rm mongo_z1002_data
 ```
