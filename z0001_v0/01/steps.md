@@ -58,8 +58,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = process.env.APP_PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || "";
+const PORT = process.env.TRAINER_APP_PORT || 5000;
+const MONGO_URI = process.env.TRAINER_MONGO_URI || "";
 
 app.get("/", (req, res) => {
   res.send("Server is running 🚀");
