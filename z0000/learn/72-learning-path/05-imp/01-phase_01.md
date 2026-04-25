@@ -570,18 +570,3 @@ Because first we validate:
 * Data ownership is correct
 
 Only then replace synchronous coupling with events.
-
----
-
-## Next (Response 3 — Phase 2)
-
-Next we replace REST chaining with:
-
-* Event-driven architecture
-* Apache Kafka topics (or RabbitMQ queues)
-* publishers / consumers
-* event contracts
-* asynchronous order processing flow
-* choreography foundation for Saga
-
-That is where microservices become real distributed systems.

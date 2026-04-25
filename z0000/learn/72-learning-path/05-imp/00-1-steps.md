@@ -1,4 +1,4 @@
-Excellent approach — before implementing, define the *phased roadmap*. Since you want to build:
+# To build:
 
 * **Order Service**
 * **Inventory Service**
@@ -17,7 +17,7 @@ with patterns:
 * **Redis (speed + idempotency)**
 * **Kubernetes (resilience)**
 
-I would teach/implement this in **12 phases**, and we can go one phase per response.
+We may learn/implement this in **12 phases**, and we can go phase by phase.
 
 ---
 
@@ -393,18 +393,3 @@ Correct order:
 
 This order matters.
 
----
-
-## Suggested Response Sequence (Many Responses)
-
-We can do next responses like:
-
-Response 1 → Phase 0 (DDD modeling in detail)
-Response 2 → Phase 1 (service APIs and schemas)
-Response 3 → Phase 2 (events)
-Response 4 → Phase 3 (Saga design)
-... continue until Kubernetes and production.
-
----
-
-If you want, next we can begin **Phase 0 with exact aggregates, events, tables, and ownership boundaries for Order/Inventory/Payment/Shipping.**
