@@ -1,0 +1,7 @@
+.env
+shared-lib/node_modules/
+gateway/node_modules/
+order-service/node_modules/
+inventory-service/node_modules/
+payment-service/node_modules/
+shipping-service/node_modules/
