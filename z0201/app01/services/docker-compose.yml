@@ -1,4 +1,21 @@
 services:
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    env_file: .env
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - order-service
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+          
   order-service:
     build: ./order-service
     container_name: order-service

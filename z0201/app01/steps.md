@@ -1174,4 +1174,306 @@ SELECT * FROM shipments;
 clear
 ```
 
-# 3. order-service -> inventory-service -> payment-service -> shipment-service (synchronous) with gateway
+# 4. order-service -> inventory-service -> payment-service -> shipment-service (synchronous) with gateway
+## in dir "services/gateway"
+```bash
+npm init
+## follow all default steps for creating init
+
+npm install express http-proxy-middleware
+npm install -D typescript ts-node
+npm install -D @types/express @types/node
+
+```
+
+## services/gateway/tsconfig.json
+```json
+{
+ "compilerOptions":{
+   "target":"ES2020",
+   "module":"commonjs",
+   "strict":true
+ }
+}
+```
+
+## services/gateway/package.json
+```json
+{
+ ...
+ "scripts":{
+   ...,
+   "dev":"ts-node src/index.ts"
+ }
+ ...
+}
+```
+
+## services/gateway/index.ts
+```typescript
+import express from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
+
+const app_port = process.env.GATEWAY_PORT || "default_app_port";
+const order_port = process.env.ORDER_PORT || "default_order_port";
+
+const app = express();
+
+
+/*
+app.use(
+ "/api/orders",
+ createProxyMiddleware({
+   target:`http://order-service:${order_port}`,
+   changeOrigin:true
+ })
+);*/
+
+app.use(
+  "/api/orders",
+  createProxyMiddleware({
+    target: `http://order-service:${order_port}`, // use localhost if not in Docker
+    changeOrigin: true,
+    pathRewrite: {
+      "^/api/orders": ""
+    }
+  })
+);
+
+app.get("/health",(req,res)=>{
+ res.json({status:"UP"});
+});
+
+app.listen(app_port,()=>{
+ console.log(`Gateway Started at localhost:${app_port}`);
+});
+```
+
+## services/gateway/Dockerfile
+```dockerfile 
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD ["npm","run","dev"]
+```
+
+## services/.env
+```dotenv 
+POSTGRES_USER=appuser
+POSTGRES_PASSWORD=apppassword
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+
+POSTGRES_DB=appdb
+ORDER_DB=orderdb
+INVENTORY_DB=inventorydb
+PAYMENT_DB=paymentdb
+SHIPPING_DB=shippingdb
+
+ORDER_PORT=5000
+INVENTORY_PORT=5001
+PAYMENT_PORT=5002
+SHIPPING_PORT=5003
+
+GATEWAY_PORT=8080
+```
+
+## services/docker-compose.yml
+```yml
+services:
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    env_file: .env
+
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - order-service
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    env_file: .env
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      - postgres
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+
+  inventory-service:
+    build: ./inventory-service
+    container_name: inventory-service
+    env_file: .env
+
+    ports:
+      - "5001:5001"
+
+    depends_on:
+      - postgres
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+
+  payment-service:
+    build: ./payment-service
+    container_name: payment-service
+    env_file: .env
+    ports:
+      - "5002:5002"
+
+    depends_on:
+      - postgres
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+
+  shipping-service:
+    build: ./shipping-service
+    container_name: shipping-service
+    env_file: .env
+
+    ports:
+      - "5003:5003"
+
+    depends_on:
+      - postgres
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.3"
+          memory: 512M
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+
+    environment:
+      POSTGRES_USER: appuser
+      POSTGRES_PASSWORD: apppassword
+      POSTGRES_DB: appdb
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+
+    deploy:
+      resources:
+        limits:
+          cpus: "0.8"
+          memory: 2G
+
+
+volumes:
+  postgres_data:
+```
+
+Capacity Calc:
+```
+CPU   RAM   Service
+0.3   0.5g  gateway
+0.3   0.5g  order-service
+0.3   0.5g  inventory-service
+0.3   0.5g  payment-service
+0.3   0.5g  shipping-service
+0.8   2.0g  postgres
+----------------------------
+2.3   4.5g  total
+----------------------------
+```
+
+## Rebuild
+
+```bash
+docker compose down
+
+docker compose up --build -d
+
+# check capacity usage / limits
+docker compose stats
+
+# build only specified service
+docker compose up -d --build gateway
+```
+
+## Test
+
+```bash
+curl http://localhost:5000/orders/health
+
+curl http://localhost:5001/inventory/health
+
+curl http://localhost:5002/payments/health
+
+curl http://localhost:5003/shipments/health
+
+curl http://localhost:8080/health
+
+curl http://localhost:8080/api/orders/orders/health
+
+curl -X POST http://localhost:8080/api/orders/orders/create \
+-H "Content-Type: application/json" \
+-d '{
+"customerId":"C101",
+"items":[{"sku":"P1","qty":2}],
+"amount":2500
+}'
+```
+
+## Check in DB
+```bash
+psql -h localhost -p 5432 -U appuser -d orderdb
+
+SELECT * FROM orders;
+
+SELECT * FROM order_items;
+
+\c inventorydb  # Or \c inv<tab>  it will autofill
+
+SELECT * FROM inventory_stock;
+
+\c paymentdb
+
+SELECT * FROM payments;
+
+\c shippingdb
+
+SELECT * FROM shipments;
+
+\q
+
+clear
+```
