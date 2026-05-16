@@ -1,0 +1,207 @@
+A. Python Basics, OOPS and Design Patterns
+
+Duration: 3 Days
+
+Lab Requirements:
+As the training is highly lab oriented, each participant attending the training program must
+be provided with a computer/laptop with the following software installed:
+
+     Jupyter notebook with Anaconda Python (open-source)
+
+    distribution: https://www.anaconda.com/products/individual
+
+Prerequisites
+This course is for people who have worked on any operating system and an editor. The
+learner should have explored programming concepts & would like to program using the
+Python Scripting language.
+
+Course Outline :
+     4 stages of application development
+
+     4 Generations of Programming Languages
+
+     Cross platform development
+        o Associating an extension with an application… the windows way
+        o Executing a program on the UNIX/Linux box
+
+     Introduction to Python
+        o Purely object oriented
+        o No limits programming language
+
+     Friends in the new land (Getting Help)
+        o dir
+        o type
+        o help
+        o help()
+     Running Python Statements
+
+     Writing Python Scripts
+
+     Built in functions
+        o Introduction to a few basic built in functions
+
+     Control Flow Statements
+        o General Syntax - Indentation
+        o Expressions
+             Unary Arithmetic operators
+             Binary Arithmetic operators
+        o Conditionals
+             if.. elif .. else
+        o Loops
+             while
+        o Loop Control Statements
+             break
+             continue
+        o Loops
+             for loop
+             Examples of for loop using lists, tuples & dictionaries
+
+    
+     I/O Handling
+        o Files
+             Using File
+
+            
+     Data Structures
+        o Lists
+             Quick introduction to Objects and Classes
+             Using Lists
+        o Tuple
+             Using Tuples
+             Tuples and the print statement
+        o Dictionary
+             Using Dictionaries
+        o String
+        o Sets
+
+     Writing Functions
+        o Defining Function
+        o Processing parameters
+        o Local Variables
+        o Default argument values
+        o Keyword Arguments
+        o The return statement
+        o DocString
+        o Lambda
+        o Recursive functions
+        o Changing the recursive depth
+        o Call by value
+        o Call by reference
+
+     Modules
+        o Introduction
+             Using the sys module
+        o Byte-compiled .pyc files
+        o The from..import statement
+        o A module's __name__
+             Using a module's __name__
+        o Making your own Modules
+             Creating your own Modules
+             from..import
+        o The dir() function
+             Using the dir function
+
+     Errors and Exceptions
+        o Errors
+        o Try..Except
+             Handling Exceptions
+        o Raising Exceptions
+             How To Raise Exceptions
+        o Try..Finally
+             Using Finally
+
+     Debugging using pdb
+        o Setting break points
+        o Printing values of variables
+        o Getting help
+        o Listing the code
+        o Stepping into the function
+        o Stepping over a function
+        o Continue till the next break point
+        o Setting temporary break points
+        o Listing break points
+        o Associating conditions to the break point
+        o Enable / disable break points
+        o Trace back
+        o Move between frames
+
+     Working with Data
+        o JSON
+        o CSV
+        o SQLite
+
+     Testing Modules
+        o doctest
+        o Pytest
+        o Unittest
+
+    OOPS:
+         Object-Oriented Programming
+        o Introduction
+        o The self
+        o Classes
+             Creating a Class
+        o object Methods
+             Using Object Methods
+        o The __init__ method
+         Using the __init__ method
+            o Class and Object Variables
+         Using Class and Object Variables
+            o Inheritance
+         Using Inheritance
+            o Polymorphism
+
+    Classes and Objects
+         Python 3 type and object hierarchy.
+         Defining classes and instantiating objects.
+         Variables vs Attributes: how are they different in Python.
+         Classes as first-class instantiatable objects.
+         Classes and class attributes.
+            o __name__, __bases__, __doc__, __dict__, __class__.
+         Instances and instance attributes.
+         Class-Instance relationship: rules and bindings.
+         Instance methods, class-methods, static-methods and singleton-instance methods.
+         Inheritance and Duck-typing.
+         Introspection of objects:
+            o id(), type(), dir()
+            o hasattr(), getattr(), setattr()
+            o isinstance(), vars()
+            o str(), repr(), bool()
+            o callable(), iter(), reversed(), len()
+         OO Design: Pythonisms and best practices
+
+    Decorators and AOP features
+         Creating and using decorators in Python.
+         Creating decorators with arguments (parameterized decorators).
+         Chaining decorators.
+         Dependency injection features: before, after and around filters.
+         Implementing decorators using classes.
+         Decorating classes and methods of a class.
+         Decorating python modules.
+         Use-case examples and best practices for implementing decorators.
+
+    Creating generators, iterators and co-routines.
+         Understanding the concurrency problem while using standard procedural programming
+        paradigm.
+         Implementing concurrency using generators in Python.
+         Creating a generator using yield statement.
+         Interesting generator patterns in the itertools module.
+         Creating custom iterators for collections.
+         Creating co-routines using yield expressions.
+         Creating execution-pipelines using generators and co-routines.
+         Using async and await features to implement co-routines and concurrency patterns.
+         An overview on the asyncio library.
+
+    Comprehensions in Python.
+         Map-comprehensions and filter-comprehensions.
+         List, Tuple, Set and Dictionary comprehensions.
+         Generator comprehensions.
+         Solving complex iteration-based map/filter problems using comprehensions (use-cases
+        with examples).
+
+    Common pythonic design patterns with use-case examples.
+         Implementing Singletons, Enforced-Encapsulation and Accessors patterns.
+         Generator/Iterator protocol.
+         Command-Dispatch patterns.
+         Publish-Subscribe patterns.
+         Factory method and Abstract Factory patterns.
