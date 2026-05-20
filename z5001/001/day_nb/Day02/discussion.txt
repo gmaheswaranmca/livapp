@@ -1,0 +1,8 @@
+open console for python script module
+
+type :
+    %run addition.py 
+    # to run it 
+
+---
+

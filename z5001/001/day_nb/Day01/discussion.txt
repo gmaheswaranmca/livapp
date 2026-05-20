@@ -1,0 +1,248 @@
+Jupyter notebook with Anaconda Python (open-source)
+https://www.anaconda.com/products/individual
+
+OR 
+
+https://jupyter.org/try-jupyter/lab/index.html
+
+
+Python PEP Standard 
+    https://peps.python.org/pep-0008/
+
+
+Programming paradigm Python 
+1. Procedural / Modular Programming 
+    functions - foundation -> building blocks
+
+    data 
+
+    feature_function(data) -> data will be one of the arg in feature_fn 
+2. Object Oriented Programming 
+    object 
+        - attr [data]       - business data 
+        - methods [fns]     - business functions to have business rules and functionality
+
+        attr + methods => encapsulated == bundle 
+
+        access to data => private / protected / public 
+
+        bank account object 
+            balance -> confidential data -> private / protected 
+
+        inheritance
+            class -> definition of object 
+            class can be hierarchical 
+
+            parent class : Account 
+            -> 
+            child class : SavingsAccount, CurrentAccount 
+3. Functional Programming 
+    higher order function - HOF 
+
+    "function has functional arg or return type as function"
+
+    java stream package 
+        collection 
+        map 
+        filter 
+        sort 
+        -> final transformation 
+
+    python: 
+        list comprehension -> functional programming
+
+        sorted([address for emp in emps if emp.address.city=='Bangalore])
+
+        [address for emp in emps if emp.address.city=='Bangalore].sort()
+4. AOP - Aspect Oriented Programming 
+    think about business logic 
+
+    all others write as aspects (cross-cutting scenarios)
+        authentication 
+        authorization 
+        logging 
+        etc 
+
+
+Datastuctures:
+    list : kind of arr like C/C++ 
+         : dynamica array
+         - read / write collection 
+            - change the element of collection 
+            - add / remove the elements of collection 
+         : collection of data 
+         : use it as collection or to represent composite data like row 
+
+         employees = [ ]    # empty list 
+         employees = list() # empty list 
+
+         - index based collection 
+            zero based index 
+
+            list_name[index] # access to particular element 
+            list_name[index] = updated_value # updates the new value at index 
+
+            list_name.append(new_element) # to add new element to list 
+            list_name.pop() # to delete last element 
+            list_name.pop(index) #to delete at index 
+
+            crud operations 
+                create 
+                read all / read one 
+                update one 
+                delete one 
+
+
+    tuple: similar to list 
+         - readonly collection
+            - cant change the element of collection 
+            - cant add / remove the elements of collection 
+
+         student = ('Dravid', 52, 450000, True)
+
+         index list only for reading 
+
+    dictionary:    
+        - collection of key value pairs 
+            - key must be primitive type or tuple 
+                str, int, float, bool, tuple 
+        - read / write collection 
+            - change the element of collection 
+                value of key-value 
+            - add / remove the elements of collection 
+                ie key-value pair 
+        - to represent the human understandable composite site 
+
+        jaiswal = {'name': 'Jaiswal', 'age':23, 'salary':300000, 'is_active':True}
+        print(jaiswal)
+
+        freq = {} # empty dict 
+        freq = dict() # empty dict 
+    
+
+        assume "jaiswal" emp as dict 
+
+        i want add hra_per 
+
+        jaiswal['hra_per'] = 20
+        jaiswal['hra'] = (jaiswal['salary'] / 100) * jaiswal['hra_per']
+
+        print(jaiwal)
+
+    Example:
+        list of salaries 
+        list of employees where each employee is inner list 
+        list of employees where each employee is inner tuple
+        list of employees where each employee is inner dictionary  
+         
+
+Python 
+    python shell : Interactive python statement 
+    jupiter notebook: Interactive script 
+            .ipynb 
+        many cell 
+            each cell : Interactive script
+                last statement if "express" can be evaluated and displayed  
+    python program: script as a file module with extenstion .py 
+
+
+input / print 
+list of data 
+    data = salary | employee 
+        employee -> list / tuple / dict 
+
+
+Apps Categories: 
+    1. Web App 
+        Full Stack App - Backend App / Microservices App 
+    2. DE / DA / Gen AI Apps 
+    3. Test Automation
+
+    4. Console App 
+    5. Desktop App 
+
+
+Task -> code -> funtion / object 
+
+task function :
+    should not have input / output -> standard convetion 
+
+    function 
+        arg : input to function 
+        return value : output out of function 
+
+    Example 
+        percentage_value(base, per) -> value 
+
+        Here avoided the i/o inside the fn.
+
+        This fn can be used all kind of app developers. 
+
+
+Helper:
+    help() 
+        this will ask you prompt to help 
+        if you give "list"
+        it will give you help for list object 
+
+        to quit the help: 
+            q
+
+    help(list)
+        it will give you help for "list" object directly without prompt 
+
+    dir(list)
+        it will give you the members of object 
+            - attr 
+            - methods 
+            - helper function 
+
+
+Memory Layout in Python:
+    each data in varialbe is stored object ie 
+        heap variable contains data 
+        stack variable contains name of the variable 
+            it refers the heap loc 
+
+stack         |   heap
+
+salary [-]----|-->[300000]
+
+======================================================
+1. experience ages
+    10 26 2 5 18 20 13 7 8 14
+
+ages = [10, 26, 2, 5, 18, 20, 13, 7, 8, 14]
+1. max age of first 2 age [done]
+2. max age of first 3 ages [done]
+3. max age from list 
+    - range for loop        
+    - element iterator loop     [done]
+    - while loop 
+4. find avg age                 [done]
+5. count age "above teen age" and "below or equal teen age" 
+6. Increase every age by 1
+7. Add one more age into list 
+8. Update 2nd age element as plus 2 
+9. Display first half ages list only  
+
+10. list of employees = empty initially 
+    - each employee as tuple 
+    
+    > added 4 emp into employees list
+    > max of employee using index for each attr of emp 
+11. list of employees = empty initially         
+    - each employee as list 
+
+    > added 4 emp into employees list
+    > max of employee using index for each attr of emp 
+12. list of employees = empty initially         
+    - each employee as dict 
+
+    > added 4 emp into employees list
+    > max of employee using key for each attr of emp 
+
+    > to write into csv file using csv.DictWriter -> writing emp dict as row 
+    > to write into csv file using csv.writer -> writing emp list as row 
+    > to read from csv file using csv.DictReader -> list of emp where each emp is dict 
+    > to read from csv file using csv.reader -> list of emp where each emp is list 
