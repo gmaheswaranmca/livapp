@@ -1,0 +1,119 @@
+Lab Requirements:
+> Python, Visual Studio Code
+> Internet to work with Leetcode, HackerRank, CodeChef
+
+Python Problem Solving and Programming Logic - 12 DAYS TRAINING 
+
+Day 1: Programming with Python
+
+Basic fundamentals of python
+Introduction to programming Basics, Python primitive types, Creating and running Python program, operators
+Solving Scenario based problems on conditional programming
+
+Day 2: Loops & Object-Oriented Programming in Python
+
+Scenario Based Problem Solving on Loops
+Problem Solving on Nested loops
+Advance problems on Loops
+Object-Oriented Programming in Python
+
+Day 3: List, Tuple, Dictionary, Set & Strings
+
+List and Tuple 
+Dictionary
+Set
+Strings
+Easy scenario based problems on List and String
+More problem solving on List and Strings
+Advance level Problem Solving on List and String
+
+Day 4: Searching Techniques
+
+Searching Algorithm Techniques 
+    > Linear search
+    > Binary search
+    > Ternary search
+Problem solving via Practice programs
+Bubble sort
+Selection sort
+Efficiency of Algorithms - time complexity, space complexity
+
+
+Day 5: Sorting Techniques
+
+Bubble sort
+Selection sort
+Insertion sort
+Quick sort
+Merge sort
+Radix Sort
+Bucket Sort
+Optimizing Algorithms
+Comparison of Algorithms
+
+Day 6: Stacks & Queues
+Stack
+Queue
+Problems Solving using Stack and Queue
+
+Day 7: Linked List
+Linked Lists
+Double Linked List
+Reversing a List
+Linked List Operations
+Problems Solving using Linked List
+
+Day 8: Tree - Part I 
+
+Binary Tree Common Operations: 
+    > Insert
+    > Delete
+    > Search
+    > Traversal     
+        > in-order
+        > pre-order
+        > post-order
+        > level order
+Full Binary Tree 
+    > Complete
+    > Perfect
+    > Balanced binary tree
+BST
+
+Problems Solving using Generic/Binary Tree, BST
+
+Day 9: Tree - Part II
+
+AVL Tree
+Red-Black Tree
+Trie 
+B-Tree
+
+Problems Solving using AVL Tree / Red-Black Tree / Trie / B-Tree
+
+Day 10: Graphs & Traversals
+
+Introduction to Graphs
+DFS Algorithm
+BFS Algorithm
+Problems Solving using Graphs
+
+Day 11: Heaps & Priority Queues and Hashing & Hashmap
+
+Min heap
+Max heap
+Heap sort 
+Priority queue
+Problems Solving using Heap
+
+Hash table
+Hash map
+Hash set
+Problems Solving hashing
+
+Day 12: DP and Greedy
+Dynamic Programming and problems
+    > Introduction to DP
+        > Memoization
+        > Tabulation
+Greedy Technique problems
