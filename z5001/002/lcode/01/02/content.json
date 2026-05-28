@@ -1,0 +1,119 @@
+{
+  "course_id": 100001,
+  "course_title": "Programming with Python",
+   "repo_base_url": "https://raw.githubusercontent.com/user/repo/tree/:course_id",
+
+  "content": [
+    {
+      "id": 1,
+      "type": "md_notes",
+      "title": "Course Book",
+
+      "github_path": ":id",
+
+      "files": [
+        {
+          "id": 1,
+          "title": "Programming Fundamentals",
+          "file": ":id.md"
+        },
+        {
+          "id": 2,
+          "title": "Variables",
+          "file": ":id.md"
+        },
+        {
+          "id": 3,
+          "title": "Loops",
+          "file": ":id.md"
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "type": "practice_coding_questions",
+      "title": "Practice Coding Questions",
+
+      "github_path": ":id",
+
+      "files": [
+        {
+          "id": 1,
+          "title": "Loops Quiz",
+          "file": ":id.json",
+          "total_questions": 10
+        },
+        {
+          "id": 2,
+          "title": "Functions Quiz",
+          "file": ":id.json",
+          "total_questions": 10
+        }
+      ]
+    },
+
+    {
+      "id": 3,
+      "type": "assessment_coding_tests",
+      "title": "Assessment Coding Tests",
+
+      "timer_enabled": true,
+      "duration_minutes": 60,
+
+      "github_path": ":id",
+
+      "files": [
+        {
+          "id": 1,
+          "title": "Assessment 1",
+          "file": ":id.json",
+          "total_questions": 10
+        },
+        {
+          "id": 2,
+          "title": "Assessment 2",
+          "file": ":id.json",
+          "total_questions": 10
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "type": "practice_mcq",
+      "title": "Practice MCQ",
+
+      "github_path": ":id",
+
+      "files": [
+        {
+          "id": 1,
+          "title": "Python Basics MCQ",
+          "file": ":id.json",
+          "total_questions": 10
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "type": "assessment_mcq",
+      "title": "Assessment MCQ",
+
+      "timer_enabled": true,
+      "duration_minutes": 30,
+
+      "github_path": "5",
+
+      "files": [
+        {
+          "id": 1,
+          "title": "Final MCQ Test",
+          "file": ":id.json",
+          "total_questions": 10
+        }
+      ]
+    }
+  ]
+}
