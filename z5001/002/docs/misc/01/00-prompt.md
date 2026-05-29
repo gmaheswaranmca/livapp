@@ -29,8 +29,7 @@ Optimized solution pattern by comparing patterns.
 
 
 Language: Python
-Category: Mathematical Problems
-Prompt
+Category: Sorting Problems
 Tier 1 Company specific coding questions. 
 list of questions only. each question in a line.
 Attributes Required:

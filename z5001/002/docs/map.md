@@ -1,8 +1,8 @@
 # Map 
 ```
-Day 1: Programming with Python [20, 1]
-Day 2: Loops & Object-Oriented Programming in Python [2]
-Day 3: List, Tuple, Dictionary, Set & Strings 
+Day 1: Programming with Python [20]
+Day 2: Loops & Object-Oriented Programming in Python 
+Day 3: List, Tuple, Dictionary, Set & Strings [1] [2]
 Day 4: Searching Techniques [31, 13, 32]
 Day 5: Sorting Techniques [32]
 Day 6: Stacks & Queues [4, 5]
