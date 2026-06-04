@@ -101,3 +101,19 @@ Attributes Required:
 all attr are comma sepearted, each problem in a line. 
 
 Order: Most asked first, others next.
+
+---
+Problems / Category:
+	Binary Search
+	Ternary Search
+	Linear Search 
+
+Give me problems list for mass hiring companies to tier-1 companies, 
+
+Attributes Required:
+
+"title of problem", "small desc", "companies asked questions comma separated", "complexity of problem"
+
+sort them based easy to hard order. 
+
+---
