@@ -1,0 +1,27 @@
+#===== Write Your Logic Here =====
+# Add a node in linked list 
+node = new Node(x);
+if head == NULL 
+    head = node
+    tail = node
+else 
+    tail.next = node
+    tail = node
+# list traversal
+node = head
+while node != null  
+    if node != head 
+        print(" ")    
+    print(node.data)
+    node = node.next
+
+/*
+5
+10 20 30 40 50
+
+4
+-1 -2 -3 -4
+
+6
+0 0 0 0 0 0
+*/
