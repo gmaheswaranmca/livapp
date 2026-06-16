@@ -1,0 +1,39 @@
+         0 1 2 3 4 5    index
+nums1 = [1,2,3,0,0,0]
+m = 3
+
+         0 1 2          index
+nums2 = [2,5,6]
+n = 3
+
+             2 3 5 6    update
+         0 1 2 3 4 5    index
+nums1 = [1,2,3,0,0,0]
+m = 3      i     
+               k
+
+         0 1 2          index
+nums2 = [2,5,6]
+n = 3    j
+
+m n m+n
+3 3 6
+
+i = m - 1
+j = n - 1
+k = m + n - 1
+
+i j k   i>=0 and j>=0    nums1[i]>nums2[j]   nums1[k]  
+2 2 5   TT               3>6F                [5]6
+2 1 4   TT               2>5F                [4]5
+2 0 3   TT               3>2T                [3]3    
+1 0 2   TT               2>2F                [2]2
+1 -1 2  TF stop
+
+j  k j>=0 nums1[k]
+-1 2 F stop 
+
+
+
+---
+
