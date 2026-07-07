@@ -1,0 +1,17 @@
+# Session Plan
+```
+Morning (4 Hours)
+    Module 1 (45 min) : Where Python is actually used
+    Module 2 (60 min) : Build a Professional CLI Tool
+    (10 - 15 mins) : Recess / break
+    Module 3 (60 min) : System Automation. Instead of isolated subprocess examples... Build System Health Checker
+    Module 4 (60 min...) : Networking. build server client. Problem of server blocking.
+Lunch Break (1 hour)
+Afternoon (4 Hours)
+    Module 4 (...20 min) : Continued...
+    Module 5 (80 min) : Same server. Threading. Each client handled independently. Race condition
+                      : Introduce Lock, Queue, Producer, Consumer.
+    (10 - 15 mins) : Recess / break
+    Module 6 (80 min) : Asyncio. Rewrite The network server
+    Module 7 (45-50 min): Threading vs Asyncio. Decision Tree. Closing The Training.
+```
